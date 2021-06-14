@@ -1,31 +1,31 @@
 {
   "name": "goit-js-hw-10-food-servicee",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://ilya-lenskiy.github.io/goit-js-hw-10-food-servicee/",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-10-food-servicee/",
-    "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-10-food-servicee/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ilya-lenskiy/goit-js-hw-10-food-servicee.git"
   },
-  "author": "",
+  "keywords": [],
+  "author": "Ilya Lenskiy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ilya-lenskiy/goit-js-hw-10-food-servicee/issues"
   },
-  "homepage": "https://ilya-lenskiy.github.io/goit-js-hw-10-food-servicee/",
-  "dependencies": {
-    "gh-pages": "^3.1.0",
+  "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
-    "parcel-plugin-nuke-dist": "^1.0.1"
+    "parcel-plugin-nuke-dist": "^1.0.1",
+    "posthtml-include": "^1.6.2",
+    "sass": "^1.32.8"
   },
-  "devDependencies": {
-    "posthtml-include": "^1.7.1"
+  "dependencies": {
+    "material-icons": "^0.7.1"
   }
 }

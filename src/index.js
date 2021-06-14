@@ -1,42 +1,51 @@
-import menuItemTpl from './templates/menu-item.hbs';
+import dishesTpl from './templates/template-of-dish.hbs';
 import menu from './menu.json';
+import './sass/main.scss';
 
-const checkbox = document.getElementById('theme-switch-toggle');
-const body = document.querySelector('body');
+const dishesContainer = document.querySelector('.js-menu');
+const menuPage = document.querySelector('body');
+const themeSwitcher = document.getElementById('theme-switch-toggle');
 
-checkbox.addEventListener('change', changeTheme);
-
+const dishesMarkup = createDishesCardsMarkup(menu);
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
-// if(localStorage.getItem('my-theme')) {
-//   body.classList.add(localStorage.getItem('my-theme'));
-// } else {
-//   body.classList.add(Theme.LIGHT);
-// }
-
-// if (localStorage.getItem('my-theme') === Theme.DARK) {
-//   checkbox.checked = true;
-// }
-
-const myTheme = localStorage.getItem('my-theme') || Theme.LIGHT;
-body.classList.add(myTheme);
-
-checkbox.checked = myTheme === Theme.DARK;
-
-function changeTheme() {
-  if (checkbox.checked) {
-    body.classList.replace(Theme.LIGHT, Theme.DARK);
-    localStorage.setItem('my-theme', Theme.DARK);
-  } else {
-    body.classList.replace(Theme.DARK, Theme.LIGHT);
-    localStorage.setItem('my-theme', Theme.LIGHT);
-  }
+function createDishesCardsMarkup(menu) {
+  return dishesTpl(menu);
 }
 
-const menuContainer = document.querySelector('.js-menu');
-const menuMarcup = menuItemTpl(menu);
+dishesContainer.insertAdjacentHTML('afterbegin', dishesMarkup);
 
-menuContainer.insertAdjacentHTML('beforeend', menuMarcup);
+themeSwitcher.addEventListener('change', e => {
+  if (e.target.checked) {
+    menuPage.classList.add(Theme.DARK);
+    menuPage.classList.remove(Theme.LIGHT);
+    localStorage.setItem('Theme', Theme.DARK);
+  } else {
+    menuPage.classList.add(Theme.LIGHT);
+    menuPage.classList.remove(Theme.DARK);
+    localStorage.setItem('Theme', Theme.LIGHT);
+  }
+});
+
+const currentTheme = localStorage.getItem('Theme');
+
+setUpProperThemeOfPage(currentTheme);
+
+function setUpProperThemeOfPage(currentTheme) {
+    if (!currentTheme) {
+        menuPage.classList.add(Theme.LIGHT);
+    } else {
+        menuPage.classList.add(currentTheme);
+    }
+}
+
+moveProperPositionOfToggle(currentTheme);
+
+function moveProperPositionOfToggle(currentTheme) {
+  if (currentTheme === Theme.DARK) {
+    console.log((themeSwitcher.checked = true));
+  }
+}
